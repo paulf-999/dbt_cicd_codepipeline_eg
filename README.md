@@ -8,7 +8,9 @@ Files used as part of a demonstration of using DBT for CICD.
 | cfn            | Contains CloudFormation template files |
 
 
-### Notes
+### Prerequisites
+
+* Setup an OATH token with Git. See: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 #### Setup
 * distinguish between DBT and CodeBuild / CodePipeline setup steps

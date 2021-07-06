@@ -7,11 +7,18 @@ Parameters:
   PipelineName:
     Type: String
     Default: eg-pipeline
-  ArtifactStoreS3Location:
+  GitRepoOwner:
     Type: String
-    Default: eg-codepipeline-artefact-store
+  GitRepoName:
+    Type: String
+  GitBranch:
+    Type: String
+    Default: master
   OAuthToken:
     Type: String
+  S3ArtefactBucketName:
+    Type: String
+    Default: codepipeline-artefact-store
 
 Resources:
   CodeBuildProject:
@@ -20,17 +27,17 @@ Resources:
       Name: eg-codebuild-project
       Artifacts:
           Type: CODEPIPELINE
-      Environment:        
+      Environment:
         Image: aws/codebuild/standard:4.0
         ComputeType: BUILD_GENERAL1_SMALL
         Type: LINUX_CONTAINER
       ServiceRole: !Ref CodeBuildRole
       Source:
         Type: CODEPIPELINE
-        
+
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline
-    DependsOn: CodeBuildProject
+    DependsOn: [CodeBuildProject, S3ArtefactsBucket]
     Properties:
       Name: !Ref PipelineName
       RoleArn: !GetAtt
@@ -40,23 +47,23 @@ Resources:
         - Name: Source
           Actions:
             - Name: Source
-              ActionTypeId: 
+              ActionTypeId:
                 Category: Source
                 Owner: ThirdParty
                 Provider: GitHub
                 Version: 1
               Configuration:
-                Owner: paulf-999-pha
-                Repo: codepipeline-test
-                Branch: master
+                Owner: !Ref GitRepoOwner
+                Repo: !Ref GitRepoName
+                Branch: !Ref GitBranch
                 OAuthToken: !Ref OAuthToken
               OutputArtifacts:
                 - Name: SourceOutput
-                
+
         - Name: Build
-          Actions: 
+          Actions:
             - Name: Build
-              ActionTypeId: 
+              ActionTypeId:
                 Category: Build
                 Owner: AWS
                 Provider: CodeBuild
@@ -65,10 +72,9 @@ Resources:
                 ProjectName: eg-codebuild-project
               InputArtifacts:
                 - Name: SourceOutput
-      ArtifactStore: 
-        Type: S3 
-        Location:
-          Ref: ArtifactStoreS3Location 
+      ArtifactStore:
+        Type: S3
+        Location: !Ref S3ArtefactsBucket
 
   CodePipelineServiceRole:
     Type: 'AWS::IAM::Role'
@@ -153,4 +159,19 @@ Resources:
           Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AdministratorAccess
-        
+
+  S3ArtefactsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref S3ArtefactBucketName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: TRUE #turns on opt 1: "Block public access to buckets and objects granted through new access control lists (ACLs)"
+        IgnorePublicAcls: TRUE #turns on opt 2: "Block public access to buckets and objects granted through any access control lists (ACLs)"
+        BlockPublicPolicy: TRUE #turns on opt 3: "Block public access to buckets and objects granted through new public bucket or access point policies"
+        RestrictPublicBuckets: TRUE #turns on opt 4: "Block public and cross-account access to buckets and objects through any public bucket or access point policies"
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
