@@ -10,8 +10,8 @@ create_codebuild_and_codepipeline_instances:
 	--stack-name codebuild-and-codepipeline-v${VERSION} \
 	--template-file cfn/codebuild-and-codepipeline.yml \
 	--capabilities CAPABILITY_IAM \
-	--parameter-overrides PipelineName=dbt_cicd_demo \
-	ArtifactStoreS3Location= \
-	GitRepoOwner=paulf-999 \
+	--parameter-overrides GitRepoOwner=paulf-999 \
 	GitRepoName=dbt_cicd_demo \
-	OAuthToken=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
+	OAuthToken=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 \
+	CodeBuildProjectName=dbt_cicd_project_demo \
+	PipelineName=dbt_cicd_pipeline_demo

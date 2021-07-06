@@ -19,12 +19,14 @@ Parameters:
   S3ArtefactBucketName:
     Type: String
     Default: codepipeline-artefact-store
+  CodeBuildProjectName:
+    Type: String
 
 Resources:
   CodeBuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: eg-codebuild-project
+      Name: !Ref CodeBuildProjectName
       Artifacts:
           Type: CODEPIPELINE
       Environment:
