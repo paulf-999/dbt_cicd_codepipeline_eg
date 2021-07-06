@@ -12,6 +12,6 @@ create_codebuild_and_codepipeline_instances:
 	--capabilities CAPABILITY_IAM \
 	--parameter-overrides GitRepoOwner=paulf-999 \
 	GitRepoName=dbt_cicd_demo \
-	OAuthToken=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 \
+	OAuthToken=${OATH_TOKEN} \
 	CodeBuildProjectName=dbt_cicd_project_demo \
 	PipelineName=dbt_cicd_pipeline_demo
