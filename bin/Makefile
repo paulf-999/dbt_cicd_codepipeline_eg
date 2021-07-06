@@ -1,9 +1,9 @@
 default: init_dbt_project setup_dbt_project_file validate_conn
 
-export DBT_PROFILE_NAME=#e.g., eg_profile_name
-export DBT_PROJECT_NAME=#e.g., dbt_demo_eg
-export PROGRAM=#e.g., JBLOGGS_DEMO
-export DBT_MODEL=#e.g., analytics_db
+export DBT_PROFILE_NAME=bikestores_cicd_demo
+export DBT_PROJECT_NAME=bikestores
+export DBT_MODEL=CURATED_DB
+export PROGRAM=DEMO
 
 deps:
 	$(info [+] Install dependencies (dbt))
