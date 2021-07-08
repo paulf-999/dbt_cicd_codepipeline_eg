@@ -19,6 +19,7 @@ phases:
       - pip install envsubst
   pre_build:
     commands:
+      - # substitute the env vars within the profiles.yml file and write the output to the DBT project folder
       - envsubst < bin/profiles/profiles.yml > bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
       - cat bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
   build:
