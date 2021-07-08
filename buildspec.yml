@@ -14,6 +14,5 @@ env:
 phases:
   build:
     commands:
+     - pip install envsubst
      - cat bin/profiles/profiles.yml
-     - pip install --upgrade dbt
-     - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles
