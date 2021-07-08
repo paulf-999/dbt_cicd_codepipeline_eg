@@ -16,5 +16,5 @@ phases:
     commands:
      - pip install envsubst
      - echo $SNOWFLAKE_ACCOUNT
-     - envsubst < bin/profiles/profiles.yml > bin/profiles/profiles.yml
-     - cat bin/profiles/profiles.yml
+     - envsubst < bin/profiles/profiles.yml > bin/bikestores/profiles/profiles.yml
+     - cat bin/bikestores/profiles/profiles.yml
