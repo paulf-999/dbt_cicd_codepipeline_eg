@@ -12,11 +12,16 @@ env:
   parameter-store:
     SNOWFLAKE_PASS: /snowflake/bikestores
 phases:
+  install:
+    commands:
+      - pip install --upgrade dbt
+      - pip install envsubst
+      - pip install --upgrade dbt
+  pre_build:
+    commands:
+      - echo $SNOWFLAKE_ACCOUNT
+      - envsubst < bin/profiles/profiles.yml > bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
+      - cat bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
   build:
     commands:
-     - pip install envsubst
-     - pip install --upgrade dbt
-     - echo $SNOWFLAKE_ACCOUNT
-     - envsubst < bin/profiles/profiles.yml > bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
-     - cat bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
      - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles
