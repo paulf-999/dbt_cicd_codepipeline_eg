@@ -15,5 +15,6 @@ phases:
   build:
     commands:
      - pip install envsubst
-     - envsubst < bin/profiles/profiles.yml > bin/profiles/profiles.yml
-     - cat bin/profiles/profiles.yml
+     - echo $SNOWFLAKE_ACCOUNT
+     - envsubst < bin/profiles/profiles.yml > bin/profiles/profiles_test.yml
+     - cat bin/profiles/profiles_test.yml
