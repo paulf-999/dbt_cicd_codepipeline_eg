@@ -14,5 +14,4 @@ env:
 phases:
   build:
     commands:
-     - pip3 install --upgrade pip
-     - cd ${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles
+     - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles
