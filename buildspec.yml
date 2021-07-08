@@ -7,7 +7,7 @@ env:
     SNOWFLAKE_USER: "PAUL999"
     SNOWFLAKE_ROLE: "BIKESTORES_DBT_SVC"
     SNOWFLAKE_DB: "BIKESTORES_RAW_DB"
-    WAREHOUSE: "BIKESTORES_DEVELOPER_WH"
+    SNOWFLAKE_WH: "BIKESTORES_DEVELOPER_WH"
     SNOWFLAKE_SCHEMA: "PRODUCTION"
   parameter-store:
     SNOWFLAKE_PASS: /snowflake/bikestores
@@ -16,5 +16,5 @@ phases:
     commands:
      - pip install envsubst
      - echo $SNOWFLAKE_ACCOUNT
-     - envsubst < bin/profiles/profiles.yml > bin/profiles/profiles_test.yml
-     - cat bin/profiles/profiles_test.yml
+     - envsubst < bin/profiles/profiles.yml > bin/profiles/profiles.yml
+     - cat bin/profiles/profiles.yml
