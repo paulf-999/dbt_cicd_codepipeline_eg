@@ -15,4 +15,5 @@ phases:
   build:
     commands:
      - pip install envsubst
+     - envsubst < bin/profiles/profiles.yml > bin/profiles/profiles.yml
      - cat bin/profiles/profiles.yml
