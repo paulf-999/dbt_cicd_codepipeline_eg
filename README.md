@@ -12,6 +12,5 @@ Files used as part of a demonstration of using DBT for CICD.
 
 * Setup an OATH token with Git. See: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
-#### Setup
+#### Notes (TODO)
 * distinguish between DBT and CodeBuild / CodePipeline setup steps
-* describe prerequisites
