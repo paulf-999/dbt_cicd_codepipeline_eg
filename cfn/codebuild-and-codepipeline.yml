@@ -21,11 +21,15 @@ Parameters:
     Default: codepipeline-artefact-store
   CodeBuildProjectName:
     Type: String
+  SSMParamNameSnowflakePass:
+    Type: String
+  SSMParamNameSnowflakeAccount:
+    Type: String
+  SnowflakeAccount:
+    Type: String
   SnowflakePass:
     Type: String
     NoEcho: true
-  SSMParamName:
-    Type: String
 
 Resources:
   CodeBuildProject:
@@ -187,7 +191,15 @@ Resources:
   SSMParam:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: !Ref SSMParamName
+      Name: !Ref SSMParamNameSnowflakeAccount
+      Type: String
+      Tier: Standard
+      Value: !Ref SnowflakeAccount
+
+  SSMParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Ref SSMParamNameSnowflakePass
       Type: String
       Tier: Standard
       Value: !Ref SnowflakePass
