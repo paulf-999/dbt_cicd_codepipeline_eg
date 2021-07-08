@@ -4,15 +4,16 @@ env:
   variables:
     DBT_PROJECT_NAME: "bikestores"
     SNOWFLAKE_ACCOUNT: "km45877.ap-southeast-2"
-    SNOWFLAKE_USER: "Paul999"
+    SNOWFLAKE_USER: "PAUL999"
     SNOWFLAKE_ROLE: "BIKESTORES_DBT_SVC"
     SNOWFLAKE_DB: "BIKESTORES_RAW_DB"
     WAREHOUSE: "BIKESTORES_DEVELOPER_WH"
-    SNOWFLAKE_SCHEMA: "bike_production"
+    SNOWFLAKE_SCHEMA: "PRODUCTION"
   parameter-store:
     SNOWFLAKE_PASS: /snowflake/bikestores
 phases:
   build:
     commands:
+     - cat bin/profiles/profiles.yml
      - pip install --upgrade dbt
      - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles

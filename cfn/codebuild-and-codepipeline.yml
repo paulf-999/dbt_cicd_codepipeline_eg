@@ -15,6 +15,7 @@ Parameters:
     Default: main
   OAuthToken:
     Type: String
+    NoEcho: true
   S3ArtefactBucketName:
     Type: String
     Default: codepipeline-artefact-store
@@ -38,6 +39,7 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Type: LINUX_CONTAINER
       ServiceRole: !Ref CodeBuildRole
+      BuildSpec:
       Source:
         Type: CODEPIPELINE
 
