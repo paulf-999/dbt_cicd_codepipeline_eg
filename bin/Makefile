@@ -1,8 +1,8 @@
-default: init_dbt_project setup_dbt_project_file validate_conn
+default: init_dbt_project validate_conn
 
 export DBT_PROFILE_NAME=bikestores_cicd_demo
 export DBT_PROJECT_NAME=bikestores
-export DBT_MODEL=CURATED_DB
+export DBT_MODEL=curated_db
 export PROGRAM=DEMO
 
 deps:
