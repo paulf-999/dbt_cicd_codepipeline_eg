@@ -26,4 +26,4 @@ phases:
   build:
     commands:
      - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir profiles
-     - cd bin/${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_PROJECT_NAME}.${DBT_MODEL}
+     - cd bin/${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
