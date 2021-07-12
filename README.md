@@ -12,6 +12,11 @@ Files used as part of a demonstration of using DBT for CI / CD.
 
 * Prior to using AWS CodeBuild (used for CI / CD), you will need to create an OATH token with Git. See: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
+### Tools used
+
+* AWS CodeBuild, CodePipeline and SSM for CI / CD
+* DBT for integrating CI unit testing
+
 ### Setup
 
 #### 1. CI / CD setup, using AWS CodePipeline
