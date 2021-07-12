@@ -37,3 +37,7 @@ To first create a CI / CD pipeline using AWS CodeBuild, run the `Makefile` at th
 Following this, run `make`!
 
 Then to test your data model, run `make data_test_model`
+
+#### Note
+
+Within the `bin/` folder, ignore the `bikestores` folder - this is temporary, whilst still in dev

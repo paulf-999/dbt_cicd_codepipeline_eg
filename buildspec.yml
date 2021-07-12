@@ -3,6 +3,7 @@ version: 0.2
 env:
   variables:
     DBT_PROJECT_NAME: "bikestores"
+    DBT_MODEL: "curated_db"
     SNOWFLAKE_ACCOUNT: "km45877.ap-southeast-2"
     SNOWFLAKE_USER: "PAUL999"
     SNOWFLAKE_ROLE: "BIKESTORES_DBT_SVC"
@@ -24,4 +25,5 @@ phases:
       - cat bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
   build:
     commands:
-     - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles
+     - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir profiles
+     - cd bin/${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_PROJECT_NAME}.${DBT_MODEL}
