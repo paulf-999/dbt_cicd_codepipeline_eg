@@ -27,9 +27,10 @@ init_dbt_project:
 	# copy profiles and model dirs into project folder
 	@cp -r profiles/ ${DBT_PROJECT_NAME}/profiles
 	@cp -r models/ ${DBT_PROJECT_NAME}/models
-	@cp -r tests/ ${DBT_PROJECT_NAME}/models
+	@cp -r tests/ ${DBT_PROJECT_NAME}/tests
+	@cp -r macros/ ${DBT_PROJECT_NAME}/macros
 	# copy schema.yml (data model tests) to project folder
-	@cp schema.yml ${DBT_PROJECT_NAME}/models
+	@cp schema.yml ${DBT_PROJECT_NAME}/models/
 	@rm -r ${DBT_PROJECT_NAME}/models/example
 	###############################################################
 	# call 'setup_dbt_project_file'
@@ -62,3 +63,7 @@ data_test_model:
 document_model:
 	cd ${DBT_PROJECT_NAME} && dbt docs generate --profiles-dir profiles --models ${DBT_MODEL}
 	cd ${DBT_PROJECT_NAME} && dbt docs serve --profiles-dir profiles
+
+test_and_build:
+	cd ${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
+	cd ${DBT_PROJECT_NAME} && dbt run --profiles-dir profiles --models analytics_db
