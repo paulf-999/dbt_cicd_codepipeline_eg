@@ -1,8 +1,3 @@
-{{ config(
-    database="bikestores_analytics_db",
-    schema="bu"
-) }}
-
 SELECT  order_item.order_id
         , product.product_id
         , store.store_id
