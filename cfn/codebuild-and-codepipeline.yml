@@ -43,7 +43,6 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Type: LINUX_CONTAINER
       ServiceRole: !Ref CodeBuildRole
-      BuildSpec:
       Source:
         Type: CODEPIPELINE
 
@@ -188,7 +187,7 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
 
-  SSMParam:
+  SSMParamAccount:
     Type: AWS::SSM::Parameter
     Properties:
       Name: !Ref SSMParamNameSnowflakeAccount
@@ -196,7 +195,7 @@ Resources:
       Tier: Standard
       Value: !Ref SnowflakeAccount
 
-  SSMParam:
+  SSMParamPass:
     Type: AWS::SSM::Parameter
     Properties:
       Name: !Ref SSMParamNameSnowflakePass

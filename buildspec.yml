@@ -6,13 +6,13 @@ env:
     DBT_MODEL: "curated_db"
     SNOWFLAKE_ACCOUNT: "km45877.ap-southeast-2"
     SNOWFLAKE_USER: "PAUL999"
-    SNOWFLAKE_ROLE: "BIKESTORES_DBT_SVC"
+    SNOWFLAKE_ROLE: "ACCOUNTADMIN"
     SNOWFLAKE_DB: "BIKESTORES_RAW_DB"
     SNOWFLAKE_WH: "BIKESTORES_DEVELOPER_WH"
     SNOWFLAKE_SCHEMA: "PRODUCTION"
   parameter-store:
     SNOWFLAKE_PASS: /snowflake/bikestores
-    SNOWFLAKE_ACCOUNT: /snowflake/bikestores
+    SNOWFLAKE_ACCOUNT: /snowflake/account
 phases:
   install:
     commands:
@@ -25,6 +25,6 @@ phases:
       - cat bin/${DBT_PROJECT_NAME}/profiles/profiles.yml
   build:
     commands:
-     - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir profiles
-     - cd bin/${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
-     - cd bin/${DBT_PROJECT_NAME} && dbt run --profiles-dir profiles --models analytics_db
+      - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir profiles
+      - cd bin/${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
+      - cd bin/${DBT_PROJECT_NAME} && dbt run --profiles-dir profiles --models analytics_db
