@@ -1,6 +1,6 @@
 ## dbt_cicd_demo
 
-Files used as part of a demonstration of using DBT for CI / CD.
+Files used as part of a demonstration of using DBT tests as a basis CI / CD.
 
 | Folder                    | Description                                                                                       |
 | --------------------------| --------------------------------------------------------------------------------------------------|
