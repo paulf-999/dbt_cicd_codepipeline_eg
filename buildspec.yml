@@ -7,9 +7,9 @@ env:
     SNOWFLAKE_ACCOUNT: "km45877.ap-southeast-2"
     SNOWFLAKE_USER: "PAUL999"
     SNOWFLAKE_ROLE: "ACCOUNTADMIN"
-    SNOWFLAKE_DB: "BIKESTORES_RAW_DB"
-    SNOWFLAKE_WH: "BIKESTORES_DEVELOPER_WH"
-    SNOWFLAKE_SCHEMA: "PRODUCTION"
+    SNOWFLAKE_DB: "bikestores_curated_db"
+    SNOWFLAKE_WH: "bikestores_developer_wh"
+    SNOWFLAKE_SCHEMA: "production"
   parameter-store:
     SNOWFLAKE_PASS: /snowflake/bikestores
     SNOWFLAKE_ACCOUNT: /snowflake/account
