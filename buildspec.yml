@@ -27,3 +27,4 @@ phases:
     commands:
      - cd bin/${DBT_PROJECT_NAME} && dbt debug --profiles-dir profiles
      - cd bin/${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
+     - cd bin/${DBT_PROJECT_NAME} && dbt run --profiles-dir profiles --models analytics_db
