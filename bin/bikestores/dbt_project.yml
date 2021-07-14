@@ -23,3 +23,11 @@ target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_modules"
+
+
+# Configuring models
+models:
+  bikestores:
+      # Applies to all files under models/example/
+      curated_db:
+          schema: edm

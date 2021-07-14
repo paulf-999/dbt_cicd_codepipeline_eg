@@ -1,4 +1,3 @@
-
 {{ config(
     database="bikestores_analytics_db",
     schema="bu"
