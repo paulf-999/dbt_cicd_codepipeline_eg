@@ -4,7 +4,7 @@ Files used as part of a demonstration of using DBT for CI / CD.
 
 | Folder                    | Description                                                                                       |
 | --------------------------| --------------------------------------------------------------------------------------------------|
-| bin            | Contains the DBT files (to be used as a basis for CI/CD) |
+| bin            | Contains the DBT files (to be used as a basis for CI / CD) |
 | cfn            | Contains CloudFormation template files |
 
 
@@ -37,7 +37,7 @@ To first create a CI / CD pipeline using AWS CodeBuild, run the `Makefile` at th
     * and `DBT_MODEL`
 
 2. Create any data model files you wish, underneath the folder `models` (also edit the `schema.yml` file).
-3. Similarly, create any desired unit tests within the `tests\` folder.
+3. Similarly, create any desired unit tests within the `tests/` folder.
 
 Following this, run `make`!
 
