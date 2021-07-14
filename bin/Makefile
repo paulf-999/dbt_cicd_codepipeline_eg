@@ -47,23 +47,30 @@ setup_dbt_project_file:
 	@rm ${DBT_PROJECT_NAME}/dbt_project.yml-e
 
 validate_conn:
+	$(info [+] Verify the connection to the source DB)
 	cd ${DBT_PROJECT_NAME} && dbt debug --profiles-dir=profiles
 
 run_model:
+	$(info [+] Run the DBT model)
 	cd ${DBT_PROJECT_NAME} && dbt run --profiles-dir profiles --models ${DBT_MODEL}
 
 test_model:
+	$(info [+] Test the DBT model. Note: this is a schema test only and is useful only for loading new data (enforces uniqueness))
 	# prerequisite: populate ${DBT_PROJECT_NAME}/models/schema.yml with any desired tests
 	cd ${DBT_PROJECT_NAME} && dbt test --profiles-dir profiles --models ${DBT_MODEL}
 
 data_test_model:
+	$(info [+] Test the DBT model. Note: this tests the actual data against predefined business rules)
 	# prerequisite: populate ${DBT_PROJECT_NAME}/models/schema.yml with any desired tests
 	cd ${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
 
 document_model:
+	$(info [+] Document the DBT model)
 	cd ${DBT_PROJECT_NAME} && dbt docs generate --profiles-dir profiles --models ${DBT_MODEL}
 	cd ${DBT_PROJECT_NAME} && dbt docs serve --profiles-dir profiles
 
 test_and_build:
+	$(info [+] Test then if successful, build the DBT model)
 	cd ${DBT_PROJECT_NAME} && dbt test --data --profiles-dir profiles --models ${DBT_MODEL}
+	# following successful DBT tests, then run the DBT model
 	cd ${DBT_PROJECT_NAME} && dbt run --profiles-dir profiles --models analytics_db
