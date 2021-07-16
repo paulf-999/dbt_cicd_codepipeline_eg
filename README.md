@@ -1,4 +1,4 @@
-## dbt_cicd_demo
+## dbt_cicd_codepipeline_eg
 
 Files used as part of a demonstration of using DBT tests as a basis CI / CD.
 
