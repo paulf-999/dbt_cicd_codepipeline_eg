@@ -1,27 +1,49 @@
-## dbt_cicd_codepipeline_eg
+# dbt_cicd_codepipeline_eg
 
-Files used as part of a demonstration of using DBT tests as a basis CI / CD.
+Demo of using DBT tests as a basis for CI/CD, where AWS CodeBuild / CodePipeline have been used as the CI/CD technology.
+
+---
+
+## Contents
+
+1. High-level summary
+2. Getting started
+    * Prerequisites
+    * Installation
+    * How-to run
+3. Help
+4. Folder contents
+
+---
+
+## 1. High-level summary
+
+This demo makes use of DBT tests as a basis for integration testing for CI/CD.
+
+##### Technologies used
+* AWS CodeBuild, CodePipeline and SSM for CI / CD
+* DBT for integrating CI unit testing
+
+##### Folder contents
 
 | Folder                    | Description                                                                                       |
 | --------------------------| --------------------------------------------------------------------------------------------------|
 | bin            | Contains the DBT files (to be used as a basis for CI / CD) |
 | cfn            | Contains CloudFormation template files |
 
+---
+
+## 2. Getting started
 
 ### Prerequisites
 
-* Prior to using AWS CodeBuild (used for CI / CD), you will need to create an OATH token with Git. See: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+* Prior to using AWS CodeBuild (used for CI / CD), you will need to create an OATH token with Git
+    * See: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+### Installation
 
-### Tools used
+#### CI / CD setup, using AWS CodePipeline
 
-* AWS CodeBuild, CodePipeline and SSM for CI / CD
-* DBT for integrating CI unit testing
-
-### Setup
-
-#### 1. CI / CD setup, using AWS CodePipeline
-
-To first create a CI / CD pipeline using AWS CodeBuild, run the `Makefile` at the project root. This is just creating a CloudFormation stack, to create the CodeBuild project
+To first create a CI / CD pipeline using AWS CodeBuild, run the `Makefile` at the project root. This is just creating a CloudFormation stack, to create the CodeBuild project.
 
 #### 2. DBT setup
 
@@ -42,6 +64,9 @@ To first create a CI / CD pipeline using AWS CodeBuild, run the `Makefile` at th
 Following this, run `make`!
 
 Then to test your data model, run `make data_test_model`
+### How-to run - see `builspec.yml`
+
+Each time a code change is submitted to Git, it will trigger DBD commands outlined by the CI/CD pipeline. These commands can be seen within the file `buildspec.yml`.
 
 #### Note
 
