@@ -11,8 +11,6 @@ Demo of using DBT tests as a basis for CI/CD, where AWS CodeBuild / CodePipeline
     * Prerequisites
     * Installation
     * How-to run
-3. Help
-4. Folder contents
 
 ---
 
