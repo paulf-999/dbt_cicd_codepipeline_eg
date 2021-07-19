@@ -16,7 +16,7 @@ Demo of using DBT tests as a basis for CI/CD, where AWS CodeBuild / CodePipeline
 
 ## 1. High-level summary
 
-This demo makes use of DBT tests as a basis for integration testing for CI/CD.
+This demo makes use of DBT tests as a basis for integration testing for CI/CD, where AWS CodeBuild / CodePipeline have been used as the CI/CD technology.
 
 ##### Technologies used
 * AWS CodeBuild, CodePipeline and SSM for CI / CD
@@ -55,6 +55,15 @@ To first create a CI / CD pipeline using AWS CodeBuild, run the `Makefile` at th
     * `DBT_PROJECT_NAME`
     * `PROGRAM`
     * and `DBT_MODEL`
+
+Where the purpose of these variables is as follows:
+
+| Variable | Description                  | Example |
+| -------| -----------------------------| --- |
+| DBT_PROFILE_NAME | The name of the profile to use, containing the details required to connect to your data warehouse. Will be used to populate `profiles.yml`. | `eg_client_project_non_prod` |
+| DBT_PROJECT_NAME | The name you wish to use for your DBT project. A dbt project is a directory of `.sql` and `.yml` files, which dbt uses to transform your data. | `eg_project` |
+| DBT_MODEL | * Typically aligns to the name of your target database.<br/>* Models are defined in `.sql` files, typically in the `models` directory)<br/>* Note: this must be lowercase and hyphens, spaces or underscores aren't allowed for this value | `curated_db` |
+| PROGRAM | * Accronym to describe the program of work<br/>* Used extensively to prefix DB/account objects<br/>* Note: hyphens, spaces or underscores aren't allowed for this value | `DFP` <br/>(accronym for 'Data Foundations Project') |
 
 2. Create any data model files you wish, underneath the folder `models` (also edit the `schema.yml` file).
 3. Similarly, create any desired unit tests within the `tests/` folder.
